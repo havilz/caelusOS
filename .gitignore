@@ -1,0 +1,34 @@
+# CaelusOS Git Ignore Rules
+
+# Private Documentation Folder
+docs/
+
+# Internal Sub-directory README Files (Root README.md is explicitly tracked)
+seeds/**/README.md
+packages/**/README.md
+installer/**/README.md
+builder/**/README.md
+
+# ISO Build Outputs & Checksums
+*.iso
+*.iso.sha256
+builder/out/
+builder/binary.hybrid.iso
+
+# Live-Build Temporary Build Directories & Caches
+builder/.build/
+builder/auto/.build/
+builder/chroot/
+builder/binary/
+builder/cache/
+builder/stage/
+builder/local/
+
+# Temporary Files, Logs, & System Artifacts
+*.log
+*.tmp
+*.swp
+*.bak
+*~
+.DS_Store
+Thumbs.db

@@ -21,11 +21,69 @@ show_project_creator_menu() {
     echo -n "Select project domain [0-3]: "
 }
 
+handle_scaffold() {
+    local stack_type="$1"
+    local proj_name="$2"
+
+    case "$stack_type" in
+        "flutter")
+            if [ "$proj_name" = "." ]; then
+                flutter create .
+            else
+                flutter create "$proj_name"
+            fi
+            ;;
+        "react-native")
+            if [ "$proj_name" = "." ]; then
+                npx react-native@latest init "CaelusApp" --directory .
+            else
+                npx react-native@latest init "$proj_name"
+            fi
+            ;;
+        "nextjs")
+            if [ "$proj_name" = "." ]; then
+                npx create-next-app@latest .
+            else
+                npx create-next-app@latest "$proj_name"
+            fi
+            ;;
+        "nodejs")
+            if [ "$proj_name" = "." ]; then
+                npm init -y
+            else
+                mkdir -p "$proj_name" && cd "$proj_name" && npm init -y
+            fi
+            ;;
+        "gomod")
+            if [ "$proj_name" = "." ]; then
+                local mod_name=$(basename "$CURRENT_DIR")
+                go mod init "$mod_name"
+            else
+                mkdir -p "$proj_name" && cd "$proj_name" && go mod init "$proj_name"
+            fi
+            ;;
+        "rust")
+            if [ "$proj_name" = "." ]; then
+                cargo init .
+            else
+                cargo new "$proj_name"
+            fi
+            ;;
+        "cpp")
+            if [ "$proj_name" = "." ]; then
+                cmake -B build .
+            else
+                mkdir -p "$proj_name" && cd "$proj_name" && cmake -B build .
+            fi
+            ;;
+    esac
+}
+
 handle_project_mode() {
     local stack_name="$1"
     local dep_cmd="$2"
     local dep_module="$3"
-    local init_cmd="$4"
+    local stack_type="$4"
 
     log_info "Checking dependencies for $stack_name..."
     if ! command -v "$dep_cmd" >/dev/null 2>&1; then
@@ -65,11 +123,7 @@ handle_project_mode() {
         fi
 
         log_info "Scaffolding new $stack_name project '$proj_name'..."
-        if [ "$proj_name" = "." ]; then
-            eval "$init_cmd ."
-        else
-            eval "$init_cmd $proj_name"
-        fi
+        handle_scaffold "$stack_type" "$proj_name"
         log_success "Project $proj_name created successfully!"
     fi
 }
@@ -85,9 +139,9 @@ main_project_creator() {
             echo -n "Select stack [1-2]: "
             read -r stack_choice
             if [ "$stack_choice" = "1" ]; then
-                handle_project_mode "Flutter" "flutter" "08-flutter.sh" "flutter create"
+                handle_project_mode "Flutter" "flutter" "08-flutter.sh" "flutter"
             elif [ "$stack_choice" = "2" ]; then
-                handle_project_mode "React Native" "npm" "05-nodejs.sh" "npx react-native@latest init"
+                handle_project_mode "React Native" "npm" "05-nodejs.sh" "react-native"
             fi
             ;;
         2)
@@ -98,11 +152,11 @@ main_project_creator() {
             echo -n "Select stack [1-3]: "
             read -r stack_choice
             if [ "$stack_choice" = "1" ]; then
-                handle_project_mode "Next.js" "npm" "05-nodejs.sh" "npx create-next-app@latest"
+                handle_project_mode "Next.js" "npm" "05-nodejs.sh" "nextjs"
             elif [ "$stack_choice" = "2" ]; then
-                handle_project_mode "Node.js" "npm" "05-nodejs.sh" "npm init -y"
+                handle_project_mode "Node.js" "npm" "05-nodejs.sh" "nodejs"
             elif [ "$stack_choice" = "3" ]; then
-                handle_project_mode "Go Module" "go" "02-go.sh" "go mod init"
+                handle_project_mode "Go Module" "go" "02-go.sh" "gomod"
             fi
             ;;
         3)
@@ -112,9 +166,9 @@ main_project_creator() {
             echo -n "Select stack [1-2]: "
             read -r stack_choice
             if [ "$stack_choice" = "1" ]; then
-                handle_project_mode "Rust" "cargo" "03-rust.sh" "cargo new"
+                handle_project_mode "Rust" "cargo" "03-rust.sh" "rust"
             elif [ "$stack_choice" = "2" ]; then
-                handle_project_mode "C++" "cmake" "01-cpp.sh" "cmake -B build"
+                handle_project_mode "C++" "cmake" "01-cpp.sh" "cpp"
             fi
             ;;
         0) return 0 ;;

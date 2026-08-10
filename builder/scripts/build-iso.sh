@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
 
-log_info()  { echo -e "\e[34m[CAELUS-INFO]\e[0m $1"; }
+log_info()    { echo -e "\e[34m[CAELUS-INFO]\e[0m $1"; }
 log_success() { echo -e "\e[32m[CAELUS-SUCCESS]\e[0m $1"; }
-log_error() { echo -e "\e[31m[CAELUS-ERROR]\e[0m $1"; }
+log_error()   { echo -e "\e[31m[CAELUS-ERROR]\e[0m $1"; }
 
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 BUILDER_DIR="$PROJECT_ROOT/builder"
@@ -14,15 +14,43 @@ log_info "Starting CaelusOS Live ISO Build Pipeline..."
 mkdir -p "$OUT_DIR"
 cd "$BUILDER_DIR"
 
-log_info "Synchronizing Overlay Packages..."
+log_info "1. Wiring seeds/*.seed into package-lists/caelus.list.chroot..."
+mkdir -p "$BUILDER_DIR/config/package-lists"
+LIST_FILE="$BUILDER_DIR/config/package-lists/caelus.list.chroot"
+> "$LIST_FILE"
+
+# Collect all seed packages excluding comments and blacklist
+for seed in "$PROJECT_ROOT/seeds/core.seed" "$PROJECT_ROOT/seeds/desktop.seed" "$PROJECT_ROOT/seeds/apps.seed" "$PROJECT_ROOT/seeds/drivers.seed"; do
+    if [ -f "$seed" ]; then
+        grep -v '^\s*#' "$seed" | grep -v '^\s*$' >> "$LIST_FILE.raw" || true
+    fi
+done
+
+# Filter out blacklist items
+if [ -f "$PROJECT_ROOT/seeds/blacklist.seed" ]; then
+    grep -v '^\s*#' "$PROJECT_ROOT/seeds/blacklist.seed" | grep -v '^\s*$' > "$BUILDER_DIR/blacklist.tmp" || true
+    grep -v -F -f "$BUILDER_DIR/blacklist.tmp" "$LIST_FILE.raw" > "$LIST_FILE" 2>/dev/null || cp "$LIST_FILE.raw" "$LIST_FILE"
+    rm -f "$BUILDER_DIR/blacklist.tmp" "$LIST_FILE.raw"
+else
+    mv "$LIST_FILE.raw" "$LIST_FILE"
+fi
+log_success "Package list generated at config/package-lists/caelus.list.chroot"
+
+log_info "2. Synchronizing Overlay Packages..."
 mkdir -p "$BUILDER_DIR/config/includes.chroot"
 cp -r "$PROJECT_ROOT/packages/caelus-settings/"* "$BUILDER_DIR/config/includes.chroot/" 2>/dev/null || true
 cp -r "$PROJECT_ROOT/packages/caelus-artwork/"* "$BUILDER_DIR/config/includes.chroot/" 2>/dev/null || true
 cp -r "$PROJECT_ROOT/packages/caelus-plymouth/"* "$BUILDER_DIR/config/includes.chroot/" 2>/dev/null || true
 cp -r "$PROJECT_ROOT/packages/caelus-welcome/"* "$BUILDER_DIR/config/includes.chroot/" 2>/dev/null || true
 
-log_info "Executing Live-Build..."
-lb config
+log_info "3. Executing Live-Build..."
+if [ -f "$BUILDER_DIR/auto/config" ]; then
+    chmod +x "$BUILDER_DIR/auto/config"
+    ./auto/config
+else
+    lb config
+fi
+
 lb build
 
 if [ -f "live-image-amd64.hybrid.iso" ]; then

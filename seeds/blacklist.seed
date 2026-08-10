@@ -1,0 +1,26 @@
+# CaelusOS Blacklist Seed Manifest (Excluded Bloatware & Unnecessary Packages)
+
+# Excluded GNOME Games & Bloat
+gnome-games
+aisleriot
+five-or-more
+four-in-a-row
+gnome-chess
+gnome-klotski
+gnome-mahjongg
+gnome-mines
+gnome-nibbles
+gnome-robots
+gnome-sudoku
+quadrapassel
+tali
+swell-foop
+
+# Excluded Heavy Office Suites & Email Clients (Clean Developer Focus)
+libreoffice-common
+libreoffice-core
+thunderbird
+
+# Excluded Default Media & Telemetry Tools
+transmission-common
+popularity-contest

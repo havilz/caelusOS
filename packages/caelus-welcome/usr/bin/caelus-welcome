@@ -1,0 +1,9 @@
+#!/bin/bash
+set -e
+
+# CaelusOS Welcome Application Launcher
+if [ -f "/usr/share/caelus-toolbox/main.sh" ]; then
+    exec bash /usr/share/caelus-toolbox/main.sh
+else
+    echo "CaelusOS Welcome Application"
+fi

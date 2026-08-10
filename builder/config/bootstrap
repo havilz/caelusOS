@@ -1,0 +1,3 @@
+MIRROR_BOOTSTRAP="http://deb.debian.org/debian"
+MIRROR_CHROOT="http://deb.debian.org/debian"
+MIRROR_BINARY="http://deb.debian.org/debian"

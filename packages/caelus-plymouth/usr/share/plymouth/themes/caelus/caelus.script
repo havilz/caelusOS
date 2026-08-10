@@ -1,0 +1,16 @@
+// CaelusOS Plymouth Boot Animation Script
+
+Window.SetBackgroundTopColor(0.06, 0.07, 0.10);
+Window.SetBackgroundBottomColor(0.10, 0.11, 0.18);
+
+logo.image = Image("caelus-logo.png");
+logo.sprite = Sprite(logo.image);
+logo.sprite.SetX(Window.GetWidth() / 2 - logo.image.GetWidth() / 2);
+logo.sprite.SetY(Window.GetHeight() / 2 - logo.image.GetHeight() / 2);
+logo.sprite.SetOpacity(1.0);
+
+fun refresh_callback () {
+    // Smooth animation callback during boot progress
+}
+
+Plymouth.SetRefreshFunction(refresh_callback);

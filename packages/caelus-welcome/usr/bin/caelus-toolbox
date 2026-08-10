@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+
+# Caelus Developer Toolbox CLI Launcher
+exec bash /usr/share/caelus-toolbox/main.sh "$@"

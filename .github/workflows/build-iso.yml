@@ -1,0 +1,36 @@
+name: Build CaelusOS ISO
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  build-iso:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Live-Build & Prerequisites
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y live-build debootstrap squashfs-tools xorriso grub-pc-bin grub-efi-amd64-bin
+
+      - name: Make Scripts Executable
+        run: |
+          chmod +x builder/scripts/build-iso.sh
+          chmod +x builder/scripts/clean-build.sh
+
+      - name: Build CaelusOS ISO Image
+        run: |
+          sudo ./builder/scripts/build-iso.sh
+
+      - name: Upload ISO Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CaelusOS-ISO
+          path: builder/out/caelusOS-live-amd64.iso*
+          retention-days: 7

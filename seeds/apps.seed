@@ -1,0 +1,51 @@
+# CaelusOS Apps Seed Manifest (Pre-installed Developer & Media Suite)
+
+# Code Editor & AI Assistant
+code
+antigravity
+
+# Web Browser
+firefox-esr
+
+# Media Players & Image Viewers
+mpv
+celluloid
+ristretto
+feh
+
+# Windows Binary Compatibility Layer
+wine
+wine64
+winetricks
+
+# Containerization & Orchestration
+docker-ce
+docker-ce-cli
+docker-compose-plugin
+containerd.io
+podman
+lazydocker
+
+# API Testing & HTTP Clients
+postman
+httpie
+
+# Local Databases & Staging Environment
+sqlite3
+postgresql
+postgresql-contrib
+redis-server
+
+# System Utilities & Terminal Tools
+git
+alacritty
+thunar
+thunar-archive-plugin
+mousepad
+gparted
+fastfetch
+htop
+unzip
+tar
+gzip
+p7zip-full

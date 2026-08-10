@@ -1,0 +1,45 @@
+# CaelusOS Desktop Seed Manifest (Desktop Environment & Audio/Display Stack)
+
+# Display Server & Display Manager
+xorg
+xserver-xorg
+lightdm
+lightdm-gtk-greeter
+lightdm-gtk-greeter-settings
+
+# XFCE4 Core Desktop Environment
+xfce4
+xfce4-panel
+xfce4-session
+xfwm4
+xfce4-terminal
+xfce4-settings
+xfce4-power-manager
+xfce4-appfinder
+xfdesktop4
+xfce4-whiskermenu-plugin
+xfce4-clipman-plugin
+xfce4-pulseaudio-plugin
+xfce4-notifyd
+
+# Compositor & UI Enhancements
+picom
+rofi
+plank
+feh
+
+# PipeWire Audio Stack
+pipewire
+pipewire-audio
+pipewire-pulse
+pipewire-alsa
+wireplumber
+pavucontrol
+
+# Network & Connectivity GUI
+network-manager
+network-manager-gnome
+network-manager-applet
+wpasupplicant
+bluez
+blueman

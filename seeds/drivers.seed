@@ -1,0 +1,25 @@
+# CaelusOS Drivers Seed Manifest (Hardware Firmware & Drivers)
+
+# CPU Microcode Updates
+intel-microcode
+amd64-microcode
+
+# Wireless & Network Firmware
+firmware-realtek
+firmware-iwlwifi
+firmware-atheros
+firmware-brcm80211
+firmware-libertas
+
+# Graphics & Video Acceleration Drivers
+firmware-amd-graphics
+firmware-misc-nonfree
+mesa-vulkan-drivers
+va-driver-all
+vdpau-driver-all
+
+# Sound & Misc Hardware Firmware
+firmware-intel-sound
+firmware-linux
+firmware-linux-free
+firmware-linux-nonfree

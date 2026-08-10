@@ -1,0 +1,46 @@
+# CaelusOS Core Seed Manifest (Base Operating System & Kernel)
+
+# Linux Kernel & Headers
+linux-image-amd64
+linux-headers-amd64
+
+# Base System & Initialization
+systemd
+systemd-sysv
+systemd-timesyncd
+initramfs-tools
+base-files
+base-passwd
+bash
+coreutils
+sudo
+
+# Package Management & System Utilities
+apt
+apt-utils
+dpkg
+ca-certificates
+curl
+wget
+gnupg
+
+# Hardware & Device Management
+kmod
+udev
+dbus
+util-linux
+pciutils
+usbutils
+
+# File System Utilities
+e2fsprogs
+dosfstools
+ntfs-3g
+btrfs-progs
+squashfs-tools
+
+# Basic Networking Stack
+iproute2
+iputils-ping
+net-tools
+isc-dhcp-client

@@ -1,0 +1,31 @@
+# CaelusOS Calamares Branding Descriptor
+
+---
+componentName:  caelus
+welcomeStyleCalamares: false
+welcomeExpandingLogo: true
+
+strings:
+    productName:         CaelusOS
+    shortProductName:    CaelusOS
+    version:             12 (Bookworm)
+    shortVersion:        12
+    versionedName:       CaelusOS 12 (Bookworm)
+    shortVersionedName:  CaelusOS 12
+    productUrl:          https://caelusos.org
+    supportUrl:          https://caelusos.org/support
+    knownIssuesUrl:      https://caelusos.org/bugs
+    releaseNotesUrl:     https://caelusos.org/release-notes
+
+images:
+    productLogo:         "caelus-logo.png"
+    productIcon:         "caelus-logo.png"
+    productWelcome:      "squabs-bg.png"
+
+slideshow:               "show.qml"
+
+style:
+    SidebarBackground:    "#0f111a"
+    SidebarText:          "#e2e8f0"
+    SidebarTextSelect:    "#00d2ff"
+    SidebarTextHighlight: "#7928ca"

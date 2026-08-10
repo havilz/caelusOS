@@ -1,0 +1,9 @@
+#!/bin/sh
+set -e
+
+echo "[CAELUS-HOOK] Enabling Systemd Services..."
+if command -v systemctl >/dev/null 2>&1; then
+    systemctl enable lightdm || true
+    systemctl enable NetworkManager || true
+    systemctl enable bluetooth || true
+fi

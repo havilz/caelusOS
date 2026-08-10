@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Caelus-Dark
+Comment=CaelusOS Deep Space Dark Glassmorphism GTK Theme
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Caelus-Dark
+MetacityTheme=Caelus-Dark
+IconTheme=Caelus-Circle
+CursorTheme=Bibata-Modern-Classic
+ButtonLayout=close,minimize,maximize:

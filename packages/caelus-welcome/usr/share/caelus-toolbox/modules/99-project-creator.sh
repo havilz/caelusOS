@@ -100,6 +100,13 @@ handle_project_mode() {
         read -r install_ans
         if [[ "$install_ans" =~ ^[Yy]$ ]]; then
             bash "$TOOLBOX_DIR/modules/$dep_module"
+            # Re-source PATH after inline installation completes
+            if [ -f /etc/profile.d/flutter.sh ]; then
+                source /etc/profile.d/flutter.sh 2>/dev/null || true
+            fi
+            if [ -d "/opt/flutter/bin" ]; then
+                export PATH="$PATH:/opt/flutter/bin"
+            fi
         else
             log_error "Cannot proceed without $dep_cmd."
             return 1

@@ -1,21 +1,78 @@
-MIT License
+CaelusOS Proprietary Source-Available License
 
-Copyright (c) 2026 CaelusOS Team
+Copyright (c) 2026 CaelusOS — All Rights Reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+TERMS AND CONDITIONS
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. DEFINITIONS
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+   "Software" refers to CaelusOS and all associated source code, scripts,
+   configuration files, documentation, artwork, branding assets, and any
+   other materials contained in this repository.
+
+   "Author" refers to the original creator and copyright holder of CaelusOS.
+
+   "You" refers to any individual or entity accessing, downloading, or
+   using the Software.
+
+2. VIEWING AND CLONING
+
+   You are permitted to view and clone (download a copy of) this repository
+   for personal study, evaluation, and reference purposes only.
+
+3. MANDATORY DISCONNECTION FROM ORIGIN
+
+   If You clone this repository, You MUST immediately disconnect your local
+   copy from the original remote repository by removing the remote origin:
+
+       git remote remove origin
+
+   You are strictly PROHIBITED from maintaining any active connection
+   (push, pull, fetch) to the original repository after cloning.
+
+4. FORKING PROHIBITED
+
+   Forking this repository on any hosting platform (GitHub, GitLab, Bitbucket,
+   or any other service) is strictly PROHIBITED. Forks maintain a persistent
+   connection to the original repository, which violates the terms of this
+   license. Any fork created in violation of this clause must be deleted
+   immediately upon notice.
+
+5. MODIFICATION AND DERIVATIVE WORKS
+
+   You may modify your disconnected local copy of the Software for personal
+   or internal use only. However, if You distribute, publish, deploy, or
+   make publicly available any modified version or derivative work based on
+   this Software, You MUST:
+
+   a) Prominently display the following attribution in all copies, modified
+      versions, documentation, and any public-facing materials:
+
+      "Based on CaelusOS — originally created by [Author Name]"
+      "Original source: https://github.com/havilz/caelusOS"
+
+   b) Include a complete, unmodified copy of this LICENSE file in your
+      distribution.
+
+   c) Clearly indicate which parts of the Software have been modified
+      and which remain in their original form.
+
+6. COMMERCIAL USE
+
+   Commercial use, sale, sublicensing, or monetization of the Software
+   or any derivative works is strictly PROHIBITED without prior written
+   permission from the Author.
+
+7. NO WARRANTY
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+   IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES OR
+   OTHER LIABILITY ARISING FROM THE USE OF THE SOFTWARE.
+
+8. ENFORCEMENT
+
+   Any violation of this license automatically terminates your rights
+   under it. The Author reserves the right to take legal action against
+   any party found in violation of these terms.

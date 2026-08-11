@@ -1,5 +1,7 @@
 #!/bin/bash
-set -e
+# Note: set -e is intentionally NOT used here.
+# Toolbox is an interactive loop — module failures should return
+# the user to the main menu with an error message, not kill the process.
 
 TOOLBOX_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$TOOLBOX_DIR/lib/colors.sh"
@@ -49,16 +51,16 @@ main() {
         show_menu
         read -r choice
         case "$choice" in
-            1) bash "$TOOLBOX_DIR/modules/05-nodejs.sh" ;;
-            2) bash "$TOOLBOX_DIR/modules/07-php.sh" ;;
-            3) bash "$TOOLBOX_DIR/modules/02-go.sh" ;;
-            4) bash "$TOOLBOX_DIR/modules/06-python.sh" ;;
-            5) bash "$TOOLBOX_DIR/modules/08-flutter.sh" ;;
-            6) bash "$TOOLBOX_DIR/modules/01-cpp.sh" ;;
-            7) bash "$TOOLBOX_DIR/modules/03-rust.sh" ;;
-            8) bash "$TOOLBOX_DIR/modules/04-java.sh" ;;
+            1) bash "$TOOLBOX_DIR/modules/05-nodejs.sh" || log_error "Node.js installation encountered an error." ;;
+            2) bash "$TOOLBOX_DIR/modules/07-php.sh" || log_error "PHP installation encountered an error." ;;
+            3) bash "$TOOLBOX_DIR/modules/02-go.sh" || log_error "Go installation encountered an error." ;;
+            4) bash "$TOOLBOX_DIR/modules/06-python.sh" || log_error "Python installation encountered an error." ;;
+            5) bash "$TOOLBOX_DIR/modules/08-flutter.sh" || log_error "Flutter installation encountered an error." ;;
+            6) bash "$TOOLBOX_DIR/modules/01-cpp.sh" || log_error "C/C++ installation encountered an error." ;;
+            7) bash "$TOOLBOX_DIR/modules/03-rust.sh" || log_error "Rust installation encountered an error." ;;
+            8) bash "$TOOLBOX_DIR/modules/04-java.sh" || log_error "Java installation encountered an error." ;;
             9) log_info "Local database services (PostgreSQL & Redis) are active." ;;
-            99) bash "$TOOLBOX_DIR/modules/99-project-creator.sh" ;;
+            99) bash "$TOOLBOX_DIR/modules/99-project-creator.sh" || log_error "Project creation encountered an error." ;;
             0) log_info "Exiting Caelus Developer Toolbox. Happy Coding!"; exit 0 ;;
             *) log_warn "Invalid selection. Please enter 0-99." ;;
         esac
@@ -69,3 +71,4 @@ main() {
 }
 
 main "$@"
+

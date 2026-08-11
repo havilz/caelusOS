@@ -49,6 +49,7 @@ cp -r "$PROJECT_ROOT/packages/caelus-plymouth/"* "$BUILDER_DIR/config/includes.c
 cp -r "$PROJECT_ROOT/packages/caelus-welcome/"* "$BUILDER_DIR/config/includes.chroot/" 2>/dev/null || true
 
 log_info "3. Executing Live-Build..."
+chmod +x "$BUILDER_DIR/config/hooks/live/"*.chroot 2>/dev/null || true
 if [ -f "$BUILDER_DIR/auto/config" ]; then
     chmod +x "$BUILDER_DIR/auto/config"
     ./auto/config

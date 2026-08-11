@@ -1,10 +1,21 @@
 #!/bin/sh
 set -e
 
-echo "[CAELUS-HOOK] Installing 3rd-Party Standalone Binaries (LazyDocker)..."
+echo "[CAELUS-HOOK] Installing 3rd-Party Standalone Binaries (VS Code & LazyDocker)..."
+
+# Install Microsoft VS Code from official .deb if not present
+if ! command -v code >/dev/null 2>&1; then
+    echo "[CAELUS-HOOK] Downloading Microsoft VS Code .deb package..."
+    curl -sLo /tmp/code.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" || true
+    if [ -f /tmp/code.deb ]; then
+        dpkg -i /tmp/code.deb || apt-get install -f -y || true
+        rm -f /tmp/code.deb
+    fi
+fi
 
 # Install LazyDocker from GitHub releases if not present
 if ! command -v lazydocker >/dev/null 2>&1; then
+    echo "[CAELUS-HOOK] Downloading LazyDocker binary..."
     LAZYDOCKER_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazydocker/releases/latest" | grep -Po '"tag_name": "v\K[^"]*' || echo "0.23.3")
     curl -sLo /tmp/lazydocker.tar.gz "https://github.com/jesseduffield/lazydocker/releases/download/v${LAZYDOCKER_VERSION}/lazydocker_${LAZYDOCKER_VERSION}_Linux_x86_64.tar.gz" || true
     if [ -f /tmp/lazydocker.tar.gz ]; then

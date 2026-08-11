@@ -1,1 +1,0 @@
-deb [arch=amd64,arm64,armhf trusted=yes] https://packages.microsoft.com/repos/code stable main

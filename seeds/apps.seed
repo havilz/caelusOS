@@ -1,8 +1,5 @@
 # CaelusOS Apps Seed Manifest (Pre-installed Developer & Media Suite)
 
-# Code Editor & AI Assistant (Microsoft VS Code via 00-add-repositories.chroot)
-code
-
 # Web Browser
 firefox-esr
 
@@ -21,11 +18,10 @@ wine
 wine64
 winetricks
 
-# Containerization & Orchestration (Docker CE via 00-add-repositories.chroot)
-docker-ce
-docker-ce-cli
-docker-compose-plugin
-containerd.io
+# Containerization & Orchestration (Debian Native Docker & Podman)
+docker.io
+docker-compose
+containerd
 podman
 
 # API Testing & HTTP Clients

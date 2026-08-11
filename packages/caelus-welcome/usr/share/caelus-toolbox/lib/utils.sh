@@ -34,12 +34,46 @@ check_internet() {
 }
 
 # Function to check binary status and return colored status tag
+# Usage: get_package_status "command" ["expected_major_version"]
 get_package_status() {
     local cmd="$1"
-    if command -v "$cmd" >/dev/null 2>&1; then
-        echo -e "${CLR_GREEN}[Installed]${CLR_RESET}"
-    else
+    local expected_ver="$2"
+
+    if ! command -v "$cmd" >/dev/null 2>&1; then
         echo -e "${CLR_RED}[Not Installed]${CLR_RESET}"
+        return
+    fi
+
+    # Detect installed version
+    local raw_ver=""
+    raw_ver=$("$cmd" --version 2>/dev/null | head -n1 | grep -oP '\d+\.\d+(\.\d+)?' | head -n1) || true
+    if [ -z "$raw_ver" ]; then
+        raw_ver=$("$cmd" -version 2>/dev/null | head -n1 | grep -oP '\d+\.\d+(\.\d+)?' | head -n1) || true
+    fi
+    if [ -z "$raw_ver" ]; then
+        raw_ver=$("$cmd" -V 2>/dev/null | head -n1 | grep -oP '\d+\.\d+(\.\d+)?' | head -n1) || true
+    fi
+
+    # If we couldn't detect version, just show Installed
+    if [ -z "$raw_ver" ]; then
+        echo -e "${CLR_GREEN}[Installed]${CLR_RESET}"
+        return
+    fi
+
+    # If no expected version specified, just show detected version in green
+    if [ -z "$expected_ver" ]; then
+        echo -e "${CLR_GREEN}[v${raw_ver}]${CLR_RESET}"
+        return
+    fi
+
+    # Compare major version against expected
+    local installed_major="${raw_ver%%.*}"
+    local expected_major="${expected_ver%%.*}"
+
+    if [[ "$raw_ver" == "$expected_ver"* ]] || [[ "$installed_major" == "$expected_major" ]]; then
+        echo -e "${CLR_GREEN}[v${raw_ver}]${CLR_RESET}"
+    else
+        echo -e "${CLR_YELLOW}[v${raw_ver} - ${expected_ver} recommended]${CLR_RESET}"
     fi
 }
 

@@ -11,10 +11,10 @@ show_menu() {
     print_header
 
     # Dynamically query package statuses
-    local status_node=$(get_package_status "node")
-    local status_php=$(get_package_status "php")
+    local status_node=$(get_package_status "node" "20")
+    local status_php=$(get_package_status "php" "8.3")
     local status_go=$(get_package_status "go")
-    local status_python=$(get_package_status "python3")
+    local status_python=$(get_package_status "python3" "3")
     local status_flutter=$(get_package_status "flutter")
     local status_gcc=$(get_package_status "gcc")
     local status_rust=$(get_package_status "rustc")

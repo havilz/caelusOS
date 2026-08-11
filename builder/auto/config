@@ -15,7 +15,6 @@ lb config noauto \
     --binary-images iso-hybrid \
     --bootloader grub-efi \
     --security true \
-    --updates true \
     --debian-installer false \
     --iso-application "CaelusOS Live GNU/Linux" \
     --iso-preparer "CaelusOS Team <https://caelusos.org>" \

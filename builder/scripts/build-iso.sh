@@ -58,12 +58,15 @@ fi
 
 lb build
 
-if [ -f "live-image-amd64.hybrid.iso" ]; then
-    mv live-image-amd64.hybrid.iso "$OUT_DIR/caelusOS-live-amd64.iso"
+# Robust ISO file detection (matches live-image-amd64.iso, binary.hybrid.iso, or any generated .iso)
+ISO_FOUND=$(find "$BUILDER_DIR" -maxdepth 1 -name "*.iso" | head -n1)
+
+if [ -n "$ISO_FOUND" ] && [ -f "$ISO_FOUND" ]; then
+    mv "$ISO_FOUND" "$OUT_DIR/caelusOS-live-amd64.iso"
     cd "$OUT_DIR"
     sha256sum caelusOS-live-amd64.iso > caelusOS-live-amd64.iso.sha256
     log_success "CaelusOS ISO generated successfully at: $OUT_DIR/caelusOS-live-amd64.iso"
 else
-    log_error "ISO generation failed."
+    log_error "ISO generation failed. No ISO file generated in $BUILDER_DIR"
     exit 1
 fi

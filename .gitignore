@@ -1,7 +1,8 @@
 # CaelusOS Git Ignore Rules
 
-# Private Documentation Folder
+# Private Documentation Folder (CI/CD Log is explicitly tracked)
 docs/
+!docs/CI/CD_LOG.md
 
 # Internal Sub-directory README Files (Root README.md is explicitly tracked)
 seeds/**/README.md
@@ -30,5 +31,3 @@ builder/local/
 *.swp
 *.bak
 *~
-.DS_Store
-Thumbs.db

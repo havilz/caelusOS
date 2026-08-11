@@ -31,7 +31,7 @@ jobs:
       - name: Build CaelusOS ISO Image & Capture Log
         run: |
           mkdir -p docs
-          sudo ./builder/scripts/build-iso.sh 2>&1 | tee docs/CI/CD_LOG.md || true
+          sudo bash -c "./builder/scripts/build-iso.sh 2>&1 | tee docs/CI/CD_LOG.md" || true
 
       - name: Auto-Commit Build Log to Repository
         if: always()

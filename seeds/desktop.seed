@@ -37,7 +37,6 @@ pavucontrol
 # Network & Connectivity GUI
 network-manager
 network-manager-gnome
-network-manager-applet
 wpasupplicant
 bluez
 blueman

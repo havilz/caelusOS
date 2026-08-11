@@ -27,6 +27,7 @@ jobs:
         run: |
           chmod +x builder/scripts/build-iso.sh
           chmod +x builder/scripts/clean-build.sh
+          chmod +x builder/config/hooks/live/*.chroot || true
 
       - name: Build CaelusOS ISO Image & Capture Log
         run: |

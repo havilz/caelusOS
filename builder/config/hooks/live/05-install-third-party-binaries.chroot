@@ -1,0 +1,17 @@
+#!/bin/sh
+set -e
+
+echo "[CAELUS-HOOK] Installing 3rd-Party Standalone Binaries (LazyDocker)..."
+
+# Install LazyDocker from GitHub releases if not present
+if ! command -v lazydocker >/dev/null 2>&1; then
+    LAZYDOCKER_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazydocker/releases/latest" | grep -Po '"tag_name": "v\K[^"]*' || echo "0.23.3")
+    curl -sLo /tmp/lazydocker.tar.gz "https://github.com/jesseduffield/lazydocker/releases/download/v${LAZYDOCKER_VERSION}/lazydocker_${LAZYDOCKER_VERSION}_Linux_x86_64.tar.gz" || true
+    if [ -f /tmp/lazydocker.tar.gz ]; then
+        tar -xzf /tmp/lazydocker.tar.gz -C /tmp lazydocker || true
+        if [ -f /tmp/lazydocker ]; then
+            install -m 0755 /tmp/lazydocker /usr/local/bin/lazydocker || true
+            rm -f /tmp/lazydocker /tmp/lazydocker.tar.gz
+        fi
+    fi
+fi

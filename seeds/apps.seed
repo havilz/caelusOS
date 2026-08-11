@@ -1,8 +1,7 @@
 # CaelusOS Apps Seed Manifest (Pre-installed Developer & Media Suite)
 
-# Code Editor & AI Assistant
+# Code Editor & AI Assistant (Microsoft VS Code via 00-add-repositories.chroot)
 code
-antigravity
 
 # Web Browser
 firefox-esr
@@ -13,21 +12,23 @@ celluloid
 ristretto
 feh
 
+# Screenshot Tools
+xfce4-screenshooter
+flameshot
+
 # Windows Binary Compatibility Layer
 wine
 wine64
 winetricks
 
-# Containerization & Orchestration
+# Containerization & Orchestration (Docker CE via 00-add-repositories.chroot)
 docker-ce
 docker-ce-cli
 docker-compose-plugin
 containerd.io
 podman
-lazydocker
 
 # API Testing & HTTP Clients
-postman
 httpie
 
 # Local Databases & Staging Environment

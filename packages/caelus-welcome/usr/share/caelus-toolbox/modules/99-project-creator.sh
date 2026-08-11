@@ -85,6 +85,14 @@ handle_project_mode() {
     local dep_module="$3"
     local stack_type="$4"
 
+    # Source profile scripts to ensure PATH is updated within the same session
+    if [ -f /etc/profile.d/flutter.sh ]; then
+        source /etc/profile.d/flutter.sh 2>/dev/null || true
+    fi
+    if [ -d "/opt/flutter/bin" ]; then
+        export PATH="$PATH:/opt/flutter/bin"
+    fi
+
     log_info "Checking dependencies for $stack_name..."
     if ! command -v "$dep_cmd" >/dev/null 2>&1; then
         log_warn "Dependency '$dep_cmd' for $stack_name is not installed."

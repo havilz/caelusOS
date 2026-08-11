@@ -15,6 +15,11 @@ mkdir -p "$OUT_DIR"
 cd "$BUILDER_DIR"
 
 log_info "1. Wiring seeds/*.seed into package-lists/caelus.list.chroot..."
+# Remove legacy duplicate config path if present
+if [ -d "$BUILDER_DIR/config/auto" ]; then
+    rm -rf "$BUILDER_DIR/config/auto"
+fi
+
 mkdir -p "$BUILDER_DIR/config/package-lists"
 LIST_FILE="$BUILDER_DIR/config/package-lists/caelus.list.chroot"
 > "$LIST_FILE"

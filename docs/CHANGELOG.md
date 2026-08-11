@@ -6,19 +6,19 @@ Format pencatatan mengacu pada standar *Keep a Changelog*.
 
 ---
 
-## [Unreleased] - Ignored `.github/` Directory & Cloud Shell Storage Diagnosis
+## [Unreleased] - Live-Build Storage Optimization
 
-### Changed
-- **CI/CD `.github/` Folder Ignored (`.gitignore`)**:
-  - Menambahkan direktori `.github/` ke dalam berkas `.gitignore` sesuai instruksi pengguna.
+### Fixed
+- **Disk Space Optimization (`builder/auto/config`)**:
+  - Menambahkan flag `--cache false` dan `--cache-packages false` pada `builder/auto/config`.
+  - **Penjelasan**: Secara bawaan, `live-build` menyimpan salinan ganda berkas `.deb` (~1.8 GB) di folder `cache/packages.chroot/` selain mengekstraknya di folder `chroot/`. Menonaktifkan cache berkas `.deb` menghemat ruang disk hingga ~2 GB, sehingga perakitan ISO tidak akan lagi mengalami error *No space left on device* pada lingkungan dengan kuota disk terbatas seperti Google Cloud Shell.
 
 ---
 
-## [Native Debian Package Standardization for Docker & VS Code]
+## [Ignored `.github/` Directory & Cloud Shell Storage Diagnosis]
 
-### Fixed
-- Mengubah `seeds/apps.seed` untuk menggunakan paket resmi Debian `docker.io`, `docker-compose`, dan `containerd`.
-- Penginstalan VS Code dipindahkan ke hook `05-install-third-party-binaries.chroot`.
+### Changed
+- Menambahkan direktori `.github/` ke `.gitignore`.
 
 ---
 

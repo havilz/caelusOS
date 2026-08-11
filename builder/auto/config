@@ -10,6 +10,8 @@ lb config noauto \
     --linux-packages "none" \
     --apt-indices false \
     --apt-options "--yes" \
+    --cache false \
+    --cache-packages false \
     --checksums sha256 \
     --compression squashfs \
     --chroot-filesystem squashfs \

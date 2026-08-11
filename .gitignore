@@ -1,8 +1,10 @@
 # CaelusOS Git Ignore Rules
 
-# Private Documentation Folder (CI/CD Log is explicitly tracked)
+# GitHub Actions / CI/CD Workflows (Ignored per user request)
+.github/
+
+# Private Documentation Folder
 docs/
-!docs/CI/CD_LOG.md
 
 # Internal Sub-directory README Files (Root README.md is explicitly tracked)
 seeds/**/README.md

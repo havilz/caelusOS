@@ -7,7 +7,7 @@ lb config noauto \
     --architectures amd64 \
     --distribution bookworm \
     --archive-areas "main contrib non-free non-free-firmware" \
-    --apt-indices true \
+    --apt-indices false \
     --apt-options "--yes" \
     --checksums sha256 \
     --compression squashfs \

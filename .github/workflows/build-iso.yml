@@ -6,6 +6,7 @@ on:
     branches:
       - main
       - master
+      - dev
 
 jobs:
   build-iso:
@@ -24,11 +25,20 @@ jobs:
           chmod +x builder/scripts/build-iso.sh
           chmod +x builder/scripts/clean-build.sh
 
-      - name: Build CaelusOS ISO Image
+      - name: Build CaelusOS ISO Image & Capture Log
         run: |
-          sudo ./builder/scripts/build-iso.sh
+          mkdir -p docs
+          sudo ./builder/scripts/build-iso.sh 2>&1 | tee docs/CI/CD_LOG.md
+
+      - name: Upload Build Log Artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: CI-CD-Log
+          path: docs/CI/CD_LOG.md
 
       - name: Upload ISO Artifact
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: CaelusOS-ISO

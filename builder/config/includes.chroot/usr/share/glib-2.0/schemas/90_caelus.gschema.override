@@ -1,0 +1,6 @@
+[org.gnome.desktop.interface]
+gtk-theme='Caelus-Dark'
+icon-theme='Caelus-Circle'
+cursor-theme='Bibata-Modern-Classic'
+font-name='Inter 10'
+color-scheme='prefer-dark'

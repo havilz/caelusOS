@@ -7,16 +7,17 @@ lb config noauto \
     --architectures amd64 \
     --distribution bookworm \
     --archive-areas "main contrib non-free non-free-firmware" \
-    --linux-packages "none" \
+    --linux-packages "linux-image" \
     --apt-indices false \
-    --apt-options "--yes" \
-    --cache false \
-    --cache-packages false \
+    --apt-options "--yes -o Acquire::Check-Valid-Until=false -o Acquire::Retries=10 -o Acquire::http::Timeout=30" \
+    --cache true \
+    --cache-packages true \
     --checksums sha256 \
     --compression squashfs \
     --chroot-filesystem squashfs \
     --binary-images iso-hybrid \
-    --bootloader grub-efi \
+    --bootloader syslinux \
+    --memtest none \
     --security false \
     --debian-installer false \
     --iso-application "CaelusOS Live GNU/Linux" \

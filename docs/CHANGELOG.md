@@ -6,19 +6,19 @@ Format pencatatan mengacu pada standar *Keep a Changelog*.
 
 ---
 
-## [Unreleased] - Live-Build Storage Optimization
+## [Unreleased] - WSL NTFS Mount Point Device Node Resolution
 
 ### Fixed
-- **Disk Space Optimization (`builder/auto/config`)**:
-  - Menambahkan flag `--cache false` dan `--cache-packages false` pada `builder/auto/config`.
-  - **Penjelasan**: Secara bawaan, `live-build` menyimpan salinan ganda berkas `.deb` (~1.8 GB) di folder `cache/packages.chroot/` selain mengekstraknya di folder `chroot/`. Menonaktifkan cache berkas `.deb` menghemat ruang disk hingga ~2 GB, sehingga perakitan ISO tidak akan lagi mengalami error *No space left on device* pada lingkungan dengan kuota disk terbatas seperti Google Cloud Shell.
+- **WSL NTFS Mount Detection & Temporary Workspace (`builder/scripts/build-iso.sh`)**:
+  - **Akar Masalah**: Pada WSL, partisi Windows NTFS (`/mnt/c/` atau `/mnt/d/`) di-mount dengan flag keamanan Linux `nodev` dan `noexec`. Ketika `debootstrap` mencoba membuat berkas perangkat Linux (seperti `mknod /dev/null`), WSL memblokir eksekusi dengan pesan error: `E: Cannot install into target ... mounted with noexec or nodev`.
+  - **Solusi Tuntas**: `build-iso.sh` diperbarui untuk secara otomatis mendeteksi ketika skrip dijalankan di dalam lingkungan mount WSL (`/mnt/*`). Skrip akan menyalin ruang kerja perakitan ke direktori Linux native `/tmp/caelus-builder` (ext4) untuk menjalankan `debootstrap` dan `live-build` dengan 100% hak akses `mknod`, kemudian memindahkan ISO yang berhasil dirakit kembali ke `C:\project\caelusOS\builder\out\caelusOS-live-amd64.iso` di Windows.
 
 ---
 
-## [Ignored `.github/` Directory & Cloud Shell Storage Diagnosis]
+## [Live-Build Storage Optimization]
 
-### Changed
-- Menambahkan direktori `.github/` ke `.gitignore`.
+### Fixed
+- Menambahkan `--cache false` dan `--cache-packages false` pada `builder/auto/config`.
 
 ---
 

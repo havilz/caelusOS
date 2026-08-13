@@ -37,7 +37,11 @@ e2fsprogs
 dosfstools
 ntfs-3g
 btrfs-progs
-squashfs-tools
+# Live-Build Bootloader & Binary Dependencies
+syslinux-common
+syslinux-utils
+librsvg2-bin
+dctrl-tools
 
 # Basic Networking Stack
 iproute2

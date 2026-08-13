@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# CaelusOS ANSI Color Tokens
+CLR_RESET="\e[0m"
+CLR_BOLD="\e[1m"
+CLR_DIM="\e[2m"
+
+# Brand Palette Colors
+CLR_BG_DARK="\e[48;2;15;17;26m"
+CLR_SURFACE="\e[48;2;26;29;46m"
+CLR_CYAN="\e[38;2;0;210;255m"
+CLR_PURPLE="\e[38;2;121;40;202m"
+CLR_WHITE="\e[38;2;226;232;240m"
+CLR_MUTED="\e[38;2;148;163;184m"
+CLR_GREEN="\e[38;2;80;250;123m"
+CLR_RED="\e[38;2;255;85;85m"
+CLR_YELLOW="\e[38;2;241;250;140m"

@@ -8,8 +8,9 @@ echo "[CAELUS-INFO] Cleaning Live-Build temporary directories..."
 cd "$BUILDER_DIR"
 
 if command -v lb >/dev/null 2>&1; then
-    lb clean --purge || true
+    lb clean || true
 fi
 
-rm -rf .build chroot binary stage local cache 2>/dev/null || true
-echo "[CAELUS-SUCCESS] Build environment cleaned."
+# Keep cache/packages so downloaded packages are never re-downloaded
+rm -rf .build chroot binary stage local 2>/dev/null || true
+echo "[CAELUS-SUCCESS] Build environment cleaned (package cache preserved)."

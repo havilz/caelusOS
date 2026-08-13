@@ -1,0 +1,56 @@
+/* CaelusOS Deep Space Dark Glassmorphism GTK 3.0 Stylesheet */
+
+:root {
+    --caelus-bg-dark: #0f111a;
+    --caelus-surface: #1a1d2e;
+    --caelus-accent-cyan: #00d2ff;
+    --caelus-accent-purple: #7928ca;
+    --caelus-text-primary: #e2e8f0;
+    --caelus-text-muted: #94a3b8;
+}
+
+window,
+.background {
+    background-color: #0f111a;
+    color: #e2e8f0;
+}
+
+headerbar,
+.titlebar {
+    background-color: rgba(26, 29, 46, 0.92);
+    color: #e2e8f0;
+    border-bottom: 1px solid rgba(0, 210, 255, 0.2);
+    border-radius: 10px 10px 0 0;
+}
+
+button {
+    background-color: #1a1d2e;
+    color: #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 6px 12px;
+}
+
+button:hover {
+    background-color: rgba(0, 210, 255, 0.15);
+    border-color: #00d2ff;
+}
+
+button.suggested-action {
+    background-image: linear-gradient(135deg, #00d2ff, #7928ca);
+    color: #ffffff;
+    border: none;
+}
+
+entry {
+    background-color: rgba(15, 17, 26, 0.9);
+    color: #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    padding: 6px;
+}
+
+entry:focus {
+    border-color: #00d2ff;
+}
+

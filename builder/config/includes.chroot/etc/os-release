@@ -1,0 +1,10 @@
+PRETTY_NAME="CaelusOS GNU/Linux 12 (Bookworm)"
+NAME="CaelusOS"
+VERSION_ID="12"
+VERSION="12 (Bookworm)"
+VERSION_CODENAME=bookworm
+ID=caelus
+ID_LIKE=debian
+HOME_URL="https://caelusos.org"
+SUPPORT_URL="https://caelusos.org/support"
+BUG_REPORT_URL="https://caelusos.org/bugs"

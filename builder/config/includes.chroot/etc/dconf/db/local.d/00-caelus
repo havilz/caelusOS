@@ -1,0 +1,7 @@
+[org/gnome/desktop/interface]
+gtk-theme='Caelus-Dark'
+icon-theme='Caelus-Circle'
+color-scheme='prefer-dark'
+
+[org/gnome/desktop/wm/preferences]
+theme='Caelus-Dark'

@@ -25,34 +25,25 @@ if [[ "$PROJECT_ROOT" == /mnt/* ]] && [[ "$PWD" != /tmp/* ]]; then
     WORK_PROJECT="/tmp/caelus-project"
     mkdir -p "$WORK_PROJECT"
 
-    # Sync ONLY source directories (never touch build state directories)
-    for dir in seeds packages docs; do
-        if [ -d "$PROJECT_ROOT/$dir" ]; then
-            mkdir -p "$WORK_PROJECT/$dir"
-            cp -ru "$PROJECT_ROOT/$dir/." "$WORK_PROJECT/$dir/" 2>/dev/null || true
-        fi
-    done
-    # Always force-sync scripts, auto/config, and builder/config so latest edits from Windows ALWAYS apply
-    for dir in builder/scripts builder/auto builder/config; do
+    for dir in seeds packages installer docs builder/config builder/auto; do
         if [ -d "$PROJECT_ROOT/$dir" ]; then
             mkdir -p "$WORK_PROJECT/$dir"
             cp -rf "$PROJECT_ROOT/$dir/"* "$WORK_PROJECT/$dir/" 2>/dev/null || true
         fi
     done
-    # Sync root-level files
+    rm -rf "$WORK_PROJECT/builder/scripts"
+    mkdir -p "$WORK_PROJECT/builder/scripts"
+    cp -f "$PROJECT_ROOT/builder/scripts/"*.sh "$WORK_PROJECT/builder/scripts/" 2>/dev/null || true
     cp -u "$PROJECT_ROOT/.gitignore" "$WORK_PROJECT/" 2>/dev/null || true
 
-    # Strip Windows CRLF (\r) from ALL synced shell/config files to prevent "not found" bad interpreter errors
-    find "$WORK_PROJECT/builder/scripts" \
-         "$WORK_PROJECT/builder/auto" \
-         "$WORK_PROJECT/builder/config" \
-         "$WORK_PROJECT/seeds" \
-         -type f \( -name "*.sh" -o -name "*.chroot" -o -name "*.binary" -o -name "config" -o -name "common" -o -name "bootstrap" -o -name "chroot" -o -name "binary" -o -name "source" -o -name "*.list" -o -name "*.seed" \) \
-         -exec sed -i 's/\r$//' {} \; 2>/dev/null || true
+    # Strip Windows CRLF safely from scripts and seeds
+    for f in "$WORK_PROJECT/builder/scripts/"*.sh "$WORK_PROJECT/seeds/"*.seed; do
+        [ -f "$f" ] && sed -i 's/\r$//' "$f" 2>/dev/null || true
+    done
+    chmod 755 "$WORK_PROJECT/builder/scripts/"*.sh 2>/dev/null || true
 
     log_info "Sync complete. Running build from /tmp/caelus-project..."
-    cd "$WORK_PROJECT/builder/scripts"
-    bash ./build-iso.sh
+    exec bash "$WORK_PROJECT/builder/scripts/build-iso.sh"
 
     # Copy generated ISO back to Windows folder
     ISO_FOUND=$(find "$WORK_PROJECT/builder/out" -maxdepth 1 -name "*.iso" 2>/dev/null | head -n1)

@@ -4,6 +4,10 @@ systemd
 systemd-sysv
 systemd-timesyncd
 initramfs-tools
+live-boot
+live-boot-initramfs-tools
+live-config
+live-config-systemd
 base-files
 base-passwd
 bash

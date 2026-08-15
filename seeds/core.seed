@@ -38,6 +38,10 @@ dosfstools
 ntfs-3g
 btrfs-progs
 # Live-Build Bootloader & Binary Dependencies
+live-boot
+live-boot-initramfs-tools
+live-config
+live-config-systemd
 syslinux
 syslinux-common
 syslinux-utils

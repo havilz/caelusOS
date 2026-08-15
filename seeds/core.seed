@@ -38,6 +38,7 @@ dosfstools
 ntfs-3g
 btrfs-progs
 # Live-Build Bootloader & Binary Dependencies
+syslinux
 syslinux-common
 syslinux-utils
 librsvg2-bin
